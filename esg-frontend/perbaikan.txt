@@ -1,0 +1,31 @@
+"Tolong rombak styling dan layout Dashboard Siswa saya dengan berfokus penuh pada peningkatan aspek estetika visual modern (Bento Grid, Glassmorphism, & Visual Depth) menggunakan Tailwind CSS.
+
+Berikut detail spesifikasi desain yang harus diterapkan:
+
+1. Background Canvas & Atmosphere:
+
+Ubah background utama halaman menjadi kombinasi warna yang memiliki kedalaman. Tambahkan elemen lingkaran pendar besar yang samar di latar belakang menggunakan absolute rounded-full blur-[120px] opacity-20 agar canvas tidak flat.
+
+2. Premium Glassmorphism Bento Cards:
+
+Setiap komponen kartu di dalam Bento Grid harus menggunakan efek kaca semi-transparan: bg-white/60 backdrop-blur-lg.
+
+Berikan sudut melengkung yang modern (rounded-2xl atau rounded-3xl).
+
+Tambahkan border super tipis yang elegan: border border-white/40 atau sesuaikan dengan aksen warna metriknya secara transparan.
+
+Berikan efek bayangan halus yang menyebar (shadow-[0_8px_30px_rgb(0,0,0,0.04)]).
+
+3. Penyesuaian Komponen & Palet Warna Baru:
+
+Top Row Metrics (Metrik Kontribusi): Ganti 3 kartu atas menjadi indikator ringkas yang estetik. Gunakan warna-warna cerah dengan saturasi yang nyaman di mata (misal: Hijau Mint untuk lingkungan, Oranye/Koral hangat untuk sosial, dan Biru Indigo untuk tata kelola). Tambahkan ikon minimalis modern di dalam setiap kartu.
+
+Main Quest Widget (Misi ESG): Ubah daftar misi menjadi deretan list bergaya kartu minimalis di dalam widget utama. Berikan efek hover interaktif di setiap baris misi (hover:bg-white/80 transition-all duration-300 rounded-xl px-4 py-3).
+
+School Progress Widget: Buat visualisasi pencapaian sekolah dalam bar progres yang halus dan dinamis (bg-gradient-to-r yang estetik), bukan sekadar teks angka kaku.
+
+4. Micro-interactions:
+
+Tambahkan efek transisi halus pada seluruh elemen kartu saat kursor diarahkan (hover:scale-[1.015] hover:shadow-lg transition-all duration-500 ease-in-out).
+
+Tolong berikan kode JSX/HTML beserta class Tailwind CSS lengkap untuk menyusun ulang struktur visual halaman Dashboard Siswa tersebut."

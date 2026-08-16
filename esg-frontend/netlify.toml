@@ -1,0 +1,24 @@
+# Netlify config — Frontend ESG Sekolah (Vite + React SPA)
+# Build + publish + SPA fallback + proxy /api ke backend publik.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# --------------------------------------------------------------------------
+# PROXY BACKEND — GANTI URL DI BAWAH dengan alamat publik backend yang
+# sudah di-deploy (Render / Railway / Fly.io / VPS).
+# Contoh: to = "https://backend-esg-kalian.up.railway.app/api/:splat"
+# Jangan pakai localhost — itu merujuk ke mesin pengguna, bukan backend.
+# --------------------------------------------------------------------------
+[[redirects]]
+  from = "/api/*"
+  to = "https://YOUR-BACKEND-URL/api/:splat"
+  status = 200
+
+# SPA fallback: semua route React Router dikembalikan ke index.html
+# (public/_redirects dulu juga berisi aturan ini; duplikasi aman via Netlify)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

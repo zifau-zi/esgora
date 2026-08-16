@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  @apply bg-transparent text-slate-800 antialiased font-sans;
+}
+
+/* Reset container utama React/Vite agar tidak ada padding/margin bawaan */
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Animated Rotating Gradient Border */
+@keyframes spin-gradient {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.btn-gradient-border {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* Create new stacking context */
+}
+
+.btn-gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  /* ESG Colors: Green #10B981, Blue #2563EB, Yellow #F59E0B */
+  background: conic-gradient(
+    from 0deg,
+    #10B981,
+    #2563EB,
+    #F59E0B,
+    #10B981
+  );
+  transform: translate(-50%, -50%);
+  animation: spin-gradient 4s linear infinite;
+  z-index: -2;
+}
+
+.btn-gradient-border::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px; /* Border thickness */
+  border-radius: inherit;
+  z-index: -1;
+  transition: background-color 0.3s ease;
+}
+
+/* Custom background for each button */
+.btn-student::after {
+  background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+  backdrop-filter: blur(4px);
+}
+
+.btn-student:hover::after {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.btn-admin::after {
+  background: rgba(15, 23, 42, 0.95); /* slate-900 */
+}
+
+.btn-admin:hover::after {
+  background: rgba(15, 23, 42, 1);
+}
+
+/* =========================================================================
+   Infinite Scrolling City Marquee (Quick Search)
+   ========================================================================= */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.city-marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.city-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.city-marquee:hover .city-marquee-track {
+  animation-play-state: paused;
+}
+
+.city-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.375rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: rgb(148 163 184);
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.city-pill:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Active state: Animated Rotating Gradient Border (conic-gradient ::before) */
+.city-pill--active {
+  color: #fff;
+  border-color: transparent;
+}
+
+.city-pill--active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: conic-gradient(
+    from 0deg,
+    #10b981,
+    #2563eb,
+    #f59e0b,
+    #10b981
+  );
+  transform: translate(-50%, -50%);
+  animation: spin-gradient 4s linear infinite;
+  z-index: -2;
+}
+
+.city-pill--active::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: inherit;
+  background: rgba(15, 23, 42, 0.92);
+  z-index: -1;
+}
+
+/* =========================================================================
+   ESG ProfileCard (Floating + Glassmorphism + Inner Noise)
+   ========================================================================= */
+@keyframes esg-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: esg-float 4s ease-in-out infinite;
+}
+
+.esg-noise {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
